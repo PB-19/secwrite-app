@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1040516778610",
+    "project_id": "secwrite-app",
+    "storage_bucket": "secwrite-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040516778610:android:fe764adf6523c29802d0eb",
+        "android_client_info": {
+          "package_name": "com.example.secwriteapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbVVTZqtIkCgLEcYkYGjU75wSI2Yt3wlU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
