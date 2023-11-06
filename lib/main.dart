@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:secwriteapp/src/pages/welcome.dart';
-
 import 'src/utils/themes/main_theme.dart';
 
 void main() {
