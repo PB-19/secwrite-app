@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:secwriteapp/pages/welcome.dart';
-import 'package:secwriteapp/src/themes/main_theme.dart';
+import 'package:secwriteapp/src/pages/welcome.dart';
+
+import 'src/utils/themes/main_theme.dart';
 
 void main() {
   runApp(const MyApp());
