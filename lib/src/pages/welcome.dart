@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:secwriteapp/src/utils/constants/strings.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -7,7 +8,12 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("Welcome!"),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image(image: AssetImage(welcomeImage)),
+          ],
+        ),
       ),
     );
   }
