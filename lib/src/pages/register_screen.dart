@@ -26,7 +26,7 @@ class RegisterScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Welcome back!",
+                  "Hello there! 👋",
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w900,
                   ),
@@ -72,18 +72,18 @@ class RegisterScreen extends StatelessWidget {
                     Expanded(
                       child: FilledButton(
                         onPressed: () {
-                          
+                          Navigator.of(context).pushNamed('/login/');
                         },
-                        child: const Text("LOGIN"),
+                        child: const Text("REGISTER"),
                       ),
                     ),
                   ],
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/register/');
+                    Navigator.of(context).pushNamed('/login/');
                   },
-                  child: const Text("Don't have an account? Register here!"),
+                  child: const Text("Already have an account? Login here!"),
                 ),
               ],
             ),
