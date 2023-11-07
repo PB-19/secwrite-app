@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:secwriteapp/src/pages/home_screen.dart';
 import 'package:secwriteapp/src/pages/login_screen.dart';
 import 'package:secwriteapp/src/pages/register_screen.dart';
 import 'package:secwriteapp/src/pages/welcome.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ApplicationTheme.darkTheme,
       themeMode: ThemeMode.system,
       routes: {
+        '/home/':(context) => const HomeScreen(),
         '/login/':(context) => const LoginScreen(),
         '/register/':(context) => const RegisterScreen(),
       },

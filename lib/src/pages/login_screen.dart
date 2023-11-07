@@ -63,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                     Expanded(
                       child: FilledButton(
                         onPressed: () {
-                          
+                          Navigator.of(context).pushNamed('/home/');
                         },
                         child: const Text("LOGIN"),
                       ),
