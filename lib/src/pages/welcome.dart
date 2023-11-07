@@ -37,14 +37,18 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: FilledButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/login/');
+                    },
                     child: const Text("LOGIN"),
                   ),
                 ),
                 const SizedBox(width: 10,),
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/register/');
+                    },
                     child: const Text("REGISTER"),
                   ),
                 ),
