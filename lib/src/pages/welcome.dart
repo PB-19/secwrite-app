@@ -20,13 +20,15 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Text(
                   "Welcome to SecWrite!",
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.w900,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 20,),
                 Text(
                   "Your private note-keeping app!",
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.bodyMedium,
                   textAlign: TextAlign.center,
                 ),
               ],
