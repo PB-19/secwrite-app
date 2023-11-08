@@ -6,6 +6,7 @@ import 'package:secwriteapp/src/pages/welcome.dart';
 import 'src/utils/themes/main_theme.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -20,9 +21,9 @@ class MyApp extends StatelessWidget {
       darkTheme: ApplicationTheme.darkTheme,
       themeMode: ThemeMode.system,
       routes: {
-        '/home/':(context) => const HomeScreen(),
-        '/login/':(context) => const LoginScreen(),
-        '/register/':(context) => const RegisterScreen(),
+        '/home/': (context) => const HomeScreen(),
+        '/login/': (context) => const LoginScreen(),
+        '/register/': (context) => const RegisterScreen(),
       },
       home: const WelcomeScreen(),
       debugShowCheckedModeBanner: false,
