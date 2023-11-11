@@ -8,6 +8,7 @@ import 'package:secwriteapp/src/pages/register_screen.dart';
 import 'package:secwriteapp/src/pages/welcome.dart';
 import 'src/pages/verify_email_screen.dart';
 import 'src/utils/themes/main_theme.dart';
+import 'dart:developer' as devtools show log;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,17 +48,11 @@ class Homepage extends StatelessWidget {
       ),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
-          case ConnectionState.none:
-          // TODO: Handle this case.
-          case ConnectionState.waiting:
-          // TODO: Handle this case.
-          case ConnectionState.active:
-          // TODO: Handle this case.
           case ConnectionState.done:
             final user = FirebaseAuth.instance.currentUser;
             if (user != null) {
               if (user.emailVerified) {
-                print(user);
+                devtools.log(user.toString());
                 return const HomeScreen();
               } else {
                 return const VerifyEmailScreen();

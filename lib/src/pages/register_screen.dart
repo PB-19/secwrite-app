@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:secwriteapp/src/utils/constants/strings.dart';
+import 'dart:developer' as devtools show log;
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -127,21 +128,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 email: email,
                                 password: password,
                               );
-                              print(userCredentials);
+                              devtools.log(userCredentials.toString());
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'weak-password') {
-                                print("Weak password");
+                                devtools.log("Weak password");
                               } else if (e.code ==
                                   'email-already-in-use') {
-                                print("User already exists");
+                                devtools.log("User already exists");
                               } else if (e.code == 'invalid-email') {
-                                print("Invalid email");
+                                devtools.log("Invalid email");
                               } else {
-                                print("An error occured!");
+                                devtools.log("An error occured!");
                               }
                             }
                           } else {
-                            print("PASSWORDS DO NOT MATCH!!!");
+                            devtools.log("PASSWORDS DO NOT MATCH!!!");
                           }
                           Navigator.of(context).pushNamed('/login/');
                         },
