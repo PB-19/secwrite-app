@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:secwriteapp/src/utils/constants/strings.dart';
+import 'package:secwriteapp/src/constants/routes.dart';
 import 'dart:developer' as devtools show log;
+
+import '../utils/error.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -56,10 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 Text(
                   "Hello there! 👋",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium
-                      ?.copyWith(
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.w900,
                       ),
                 ),
@@ -122,8 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           final confirm = _confirmController.text;
                           if (password == confirm) {
                             try {
-                              final userCredentials = FirebaseAuth
-                                  .instance
+                              final userCredentials = FirebaseAuth.instance
                                   .createUserWithEmailAndPassword(
                                 email: email,
                                 password: password,
@@ -131,20 +129,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               devtools.log(userCredentials.toString());
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'weak-password') {
-                                devtools.log("Weak password");
-                              } else if (e.code ==
-                                  'email-already-in-use') {
+                                await showErrorDialog(
+                                  context,
+                                  "Weak Password!",
+                                );
+                              } else if (e.code == 'email-already-in-use') {
                                 devtools.log("User already exists");
+                                await showErrorDialog(
+                                  context,
+                                  "User already exists!",
+                                );
                               } else if (e.code == 'invalid-email') {
                                 devtools.log("Invalid email");
+                                await showErrorDialog(
+                                  context,
+                                  "Invalid email!",
+                                );
                               } else {
                                 devtools.log("An error occured!");
+                                await showErrorDialog(
+                                  context,
+                                  "Erorr: ${e.code}",
+                                );
                               }
+                            } catch (e) {
+                              devtools.log(e.toString());
+                              await showErrorDialog(
+                                context,
+                                "Error: ${e.toString()}",
+                              );
                             }
                           } else {
                             devtools.log("PASSWORDS DO NOT MATCH!!!");
+                            await showErrorDialog(
+                              context,
+                              "Passwords do not match!",
+                            );
                           }
-                          Navigator.of(context).pushNamed('/login/');
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            loginRoute,
+                            (route) => false,
+                          );
                         },
                         child: const Text("REGISTER"),
                       ),
@@ -153,10 +178,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/login/');
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      loginRoute,
+                      (route) => false,
+                    );
                   },
-                  child: const Text(
-                      "Already have an account? Login here!"),
+                  child: const Text("Already have an account? Login here!"),
                 ),
               ],
             ),

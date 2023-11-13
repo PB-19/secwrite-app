@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
 
+import 'package:secwriteapp/src/constants/routes.dart';
+
 enum MenuAction { logout }
 
 class HomeScreen extends StatefulWidget {
@@ -27,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (shouldLogout) {
                     await FirebaseAuth.instance.signOut();
                     Navigator.of(context).pushNamedAndRemoveUntil(
-                      "/login/",
+                      loginRoute,
                       (route) => false,
                     );
                   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:secwriteapp/src/utils/constants/strings.dart';
+import 'package:secwriteapp/src/constants/routes.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

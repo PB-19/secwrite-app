@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:secwriteapp/src/utils/constants/strings.dart';
+import 'package:secwriteapp/src/constants/routes.dart';
 import 'dart:developer' as devtools show log;
+
+import '../utils/error.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -53,10 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Text(
                   "Welcome back! 👋",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium
-                      ?.copyWith(
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.w900,
                       ),
                 ),
@@ -103,22 +102,42 @@ class _LoginScreenState extends State<LoginScreen> {
                           final email = _emailController.text;
                           final password = _passwordController.text;
                           try {
-                            final userCredentials = FirebaseAuth
-                                .instance
+                            final userCredentials = FirebaseAuth.instance
                                 .signInWithEmailAndPassword(
                               email: email,
                               password: password,
                             );
                             devtools.log(userCredentials.toString());
-                            Navigator.of(context).pushNamed('/main/');
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              mainRoute,
+                              (route) => false,
+                            );
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
                               devtools.log("User not found");
+                              await showErrorDialog(
+                                context,
+                                "User not found!",
+                              );
                             } else if (e.code == 'wrong-password') {
                               devtools.log("Wrong password");
+                              await showErrorDialog(
+                                context,
+                                "Wrong password!",
+                              );
                             } else {
                               devtools.log("An error occured!");
+                              await showErrorDialog(
+                                context,
+                                "Error: ${e.code}",
+                              );
                             }
+                          } catch (e) {
+                            devtools.log("${e.toString()}");
+                            await showErrorDialog(
+                              context,
+                              "Error: ${e.toString()}",
+                            );
                           }
                         },
                         child: const Text("LOGIN"),
@@ -128,10 +147,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/register/');
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      registerRoute,
+                      (route) => false,
+                    );
                   },
-                  child: const Text(
-                      "Don't have an account? Register here!"),
+                  child: const Text("Don't have an account? Register here!"),
                 ),
               ],
             ),

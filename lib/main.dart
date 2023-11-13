@@ -6,8 +6,9 @@ import 'package:secwriteapp/src/pages/home_screen.dart';
 import 'package:secwriteapp/src/pages/login_screen.dart';
 import 'package:secwriteapp/src/pages/register_screen.dart';
 import 'package:secwriteapp/src/pages/welcome.dart';
+import 'package:secwriteapp/src/constants/routes.dart';
 import 'src/pages/verify_email_screen.dart';
-import 'src/utils/themes/main_theme.dart';
+import 'src/utils/theme.dart';
 import 'dart:developer' as devtools show log;
 
 void main() {
@@ -26,10 +27,10 @@ class MyApp extends StatelessWidget {
       darkTheme: ApplicationTheme.darkTheme,
       themeMode: ThemeMode.system,
       routes: {
-        '/main/': (context) => const Homepage(),
-        '/home/': (context) => const HomeScreen(),
-        '/login/': (context) => const LoginScreen(),
-        '/register/': (context) => const RegisterScreen(),
+        mainRoute: (context) => const Homepage(),
+        homeRoute: (context) => const HomeScreen(),
+        loginRoute: (context) => const LoginScreen(),
+        registerRoute: (context) => const RegisterScreen(),
       },
       home: const Homepage(),
       debugShowCheckedModeBanner: false,
